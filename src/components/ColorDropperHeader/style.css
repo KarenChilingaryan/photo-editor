@@ -69,5 +69,6 @@
     .header {
         flex-direction: column;
         row-gap: 30px;
+        padding: 20px;
     }
 }
