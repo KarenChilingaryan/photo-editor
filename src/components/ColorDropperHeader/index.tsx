@@ -16,7 +16,7 @@ const ColorDropperHeader = ({ isDropperActive, toggleDropper, color, zoomLevel, 
             </div>
         )}
         <div className='zoom-level'>
-            <label htmlFor="zoom-size">Zoom Size</label>
+            <label htmlFor="zoom-size">Color Picker Size</label>
             <input id="zoom-size" type="range" min={ZoomLevelMinSize} max={ZoomLevelMaxSize} value={zoomLevel} onChange={handleSliderChange} />
             <div>{zoomLevel}</div>
         </div>
