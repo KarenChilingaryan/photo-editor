@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 import { useCanvas } from '../hooks/useCanvas';
 import { useColorPicker } from '../hooks/useColorPicker';
 import { useMagnifier } from '../hooks/useMagnifier';
@@ -9,7 +9,7 @@ import { DefaultImageUrl } from '../utils/constants';
 
 import './style.css'
 
-const ColorDropper: React.FC = () => {
+const ColorDropper = () => {
     const [imageUrl, setImageUrl] = useState<string>(DefaultImageUrl); // Default image URL
     const { color, pickColor } = useColorPicker();
     const { canvasRef, mainRef, canvasSize } = useCanvas(imageUrl);
@@ -21,21 +21,17 @@ const ColorDropper: React.FC = () => {
 
     const toggleDropper = () => setDropperActive(!isDropperActive);
 
-    const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
         setZoomLevel(Number(event.target.value));
     };
 
-    const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    const handleCanvasClick = (event: MouseEvent<HTMLCanvasElement>) => {
         if (!isDropperActive || !canvasRef.current) return;
-        const canvas = canvasRef.current;
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
 
-        pickColor(canvasRef.current!, x, y);
+        pickColor(canvasRef.current!, event);
     };
 
-    const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    const handleMouseMove = (event: MouseEvent<HTMLCanvasElement>) => {
         if (isDropperActive) {
             updateMagnifier(event, canvasRef, isDropperActive);
         }

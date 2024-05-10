@@ -1,7 +1,9 @@
+import { RefObject } from "react";
+
 export interface MagnifierProps {
-    magnifierRef: React.RefObject<HTMLDivElement>;
+    magnifierRef: RefObject<HTMLDivElement>;
     magnifierPosition: { x: number; y: number };
     magnifierSize: number;
     cursorDotSize: number;
-    cursorDotRef: React.RefObject<HTMLDivElement>;
+    cursorDotRef: RefObject<HTMLDivElement>;
 }

@@ -1,8 +1,10 @@
+import { ChangeEvent } from "react";
+
 export interface ColorDropperHeaderProps {
     isDropperActive: boolean;
     toggleDropper: () => void;
     setImageUrl: (url: string) => void;
     color: string;
     zoomLevel: number;
-    handleSliderChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSliderChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }

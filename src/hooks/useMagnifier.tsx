@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react';
+import { RefObject, MouseEvent, useRef, useState, useCallback } from 'react';
 import { rgbToHex } from '../utils/helpers/colorUtils';
 import { MagnifierHookProps, MagnifierPosition } from '../utils/interfaces';
 import { DefaultZoomSize } from '../utils/constants';
@@ -13,7 +13,7 @@ export const useMagnifier = ({ zoomLevel }: MagnifierHookProps) => {
     const [magnifierPosition, setMagnifierPosition] = useState<MagnifierPosition>({ x: 0, y: 0 });
 
     const updateMagnifier = useCallback(
-        (event: React.MouseEvent<HTMLCanvasElement>, canvasRef: React.RefObject<HTMLCanvasElement>, isDropperActive: boolean) => {
+        (event: MouseEvent<HTMLCanvasElement>, canvasRef: RefObject<HTMLCanvasElement>, isDropperActive: boolean) => {
             if (!isDropperActive || !canvasRef.current || !magnifierRef.current || !cursorDotRef.current) return;
 
             const canvas = canvasRef.current;

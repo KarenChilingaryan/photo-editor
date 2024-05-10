@@ -1,7 +1,9 @@
+import { RefObject, MouseEvent } from "react";
+
 export interface ColorDropperCanvasProps {
-    canvasRef: React.RefObject<HTMLCanvasElement>;
-    handleCanvasClick: (event: React.MouseEvent<HTMLCanvasElement>) => void;
-    handleMouseMove: (event: React.MouseEvent<HTMLCanvasElement>) => void;
+    canvasRef: RefObject<HTMLCanvasElement>;
+    handleCanvasClick: (event: MouseEvent<HTMLCanvasElement>) => void;
+    handleMouseMove: (event: MouseEvent<HTMLCanvasElement>) => void;
     setShowDropper: (show: boolean) => void;
     isDropperActive: boolean;
     canvasSize: {
