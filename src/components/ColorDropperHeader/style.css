@@ -64,3 +64,10 @@
 .zoom-level input {
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+}

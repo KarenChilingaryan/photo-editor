@@ -3,3 +3,9 @@
     box-sizing: border-box;
     overflow: hidden;
 }
+
+@media (max-width: 768px) {
+    .color-dropper {
+        margin: 0 0 100px 0;
+    }
+}
