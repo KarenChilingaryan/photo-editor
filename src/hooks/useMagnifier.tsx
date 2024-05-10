@@ -12,11 +12,10 @@ export const useMagnifier = ({ zoomLevel }: MagnifierHookProps) => {
     const cursorDotRef = useRef<HTMLDivElement>(null);
     const [magnifierPosition, setMagnifierPosition] = useState<MagnifierPosition>({ x: 0, y: 0 });
 
-    const drawMagnifiedArea = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, x: number, y: number) => {
+    const drawMagnifiedArea = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, magCanvas: HTMLCanvasElement, x: number, y: number) => {
+        ctx.clearRect(0, 0, magCanvas.width, magCanvas.height);
+
         let centerPixelHex = '#000000';
-
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         const lineWidth = 0.2
         const scaledPixelSize = zoomLevel - lineWidth;
 
@@ -47,7 +46,7 @@ export const useMagnifier = ({ zoomLevel }: MagnifierHookProps) => {
         ctx.fillStyle = '#FFFFFF';
         const backgroundWidth = 70;
         const backgroundX = magnifierSize / 2 - backgroundWidth / 2;
-        const backgroundY = canvas.height / 2 + 15;
+        const backgroundY = magCanvas.height / 2 + 15;
         const backgroundHeight = 20;
         ctx.fillRect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
         ctx.font = '14px Arial';
@@ -83,7 +82,7 @@ export const useMagnifier = ({ zoomLevel }: MagnifierHookProps) => {
             if (magCanvas && magCanvas.getContext && canvas) {
                 const magCtx = magCanvas.getContext('2d');
                 if (magCtx) {
-                    drawMagnifiedArea(magCtx, canvas, x, y);
+                    drawMagnifiedArea(magCtx, canvas, magCanvas, x, y);
                 }
             }
         },
