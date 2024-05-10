@@ -12,14 +12,17 @@ export const useCanvas = (imageUrl: string) => {
     const mainRef = useRef<HTMLDivElement>(null);
 
     const drawImage = useCallback(
-        (image: HTMLImageElement, canvasWidth: number, canvasHeight: number) => {
+        (image: HTMLImageElement) => {
             const canvas = canvasRef.current;
             if (!canvas) return;
-            
+            const scale = Math.min(canvas.width / image.width, canvas.height / image.height);
+            const x = (canvas.width / 2) - (image.width / 2) * scale;
+            const y = (canvas.height / 2) - (image.height / 2) * scale;
             const ctx = canvas.getContext('2d');
+
             if (ctx) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight);
+                ctx.drawImage(image, x, y, image.width * scale, image.height * scale);
             }
         },
         [canvasRef]
@@ -42,7 +45,7 @@ export const useCanvas = (imageUrl: string) => {
                 });
             }
 
-            drawImage(image, canvasWidth, canvasHeight);
+            drawImage(image);
         };
 
         image.src = imageUrl;
