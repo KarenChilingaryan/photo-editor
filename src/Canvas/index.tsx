@@ -6,11 +6,10 @@ import ColorDropperHeader from '../components/ColorDropperHeader';
 import ColorDropperCanvas from '../components/ColorDropperCanvas';
 import Magnifier from '../components/Magnifier';
 import { DefaultImageUrl } from '../utils/constants';
-
 import './style.css'
 
 const ColorDropper = () => {
-    const [imageUrl, setImageUrl] = useState<string>(DefaultImageUrl); // Default image URL
+    const [imageUrl, setImageUrl] = useState<string>(DefaultImageUrl);
     const { color, pickColor } = useColorPicker();
     const { canvasRef, mainRef, canvasSize } = useCanvas(imageUrl);
     const [showDropper, setShowDropper] = useState(false);
@@ -19,22 +18,22 @@ const ColorDropper = () => {
 
     const { magnifierPosition, magnifierSize, cursorDotSize, updateMagnifier, magnifierRef, cursorDotRef } = useMagnifier({ zoomLevel });
 
-    const toggleDropper = () => setDropperActive(!isDropperActive);
+    const toggleDropper = useCallback(() => {
+        setDropperActive(prev => !prev);
+    }, []);
 
-    const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleSliderChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setZoomLevel(Number(event.target.value));
-    };
+    }, []);
 
-    const handleCanvasClick = (event: MouseEvent<HTMLCanvasElement>) => {
+    const handleCanvasClick = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
         if (!isDropperActive || !canvasRef.current) return;
-
-        pickColor(canvasRef.current!, event);
-    };
+        pickColor(canvasRef.current, event);
+    }, [isDropperActive, pickColor, canvasRef]);
 
     const handleMouseMove = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
         updateMagnifier(event, canvasRef, isDropperActive);
     }, [updateMagnifier, canvasRef, isDropperActive]);
-
 
     return (
         <div ref={mainRef} className='color-dropper'>
