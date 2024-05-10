@@ -1,11 +1,11 @@
 import { ChangeEvent, MouseEvent, memo, useCallback, useState } from 'react';
-import { useCanvas } from '../hooks/useCanvas';
-import { useColorPicker } from '../hooks/useColorPicker';
-import { useMagnifier } from '../hooks/useMagnifier';
-import ColorDropperHeader from '../components/ColorDropperHeader';
-import ColorDropperCanvas from '../components/ColorDropperCanvas';
-import Magnifier from '../components/Magnifier';
-import { DefaultImageUrl } from '../utils/constants';
+import { useCanvas } from '../../hooks/useCanvas';
+import { useColorPicker } from '../../hooks/useColorPicker';
+import { useMagnifier } from '../../hooks/useMagnifier';
+import ColorDropperHeader from '../ColorDropperHeader';
+import ColorDropperCanvas from '../ColorDropperCanvas';
+import Magnifier from '../Magnifier';
+import { DefaultImageUrl } from '../../utils/constants';
 import './style.css'
 
 const ColorDropper = () => {

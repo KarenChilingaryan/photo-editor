@@ -1,5 +1,6 @@
+import ColorDropper from './components/ColorDropper';
+
 import './App.css';
-import ColorDropper from './Canvas';
 
 function App() {
   return (
