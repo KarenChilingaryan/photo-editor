@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from 'react';
+import { ChangeEvent, memo, useRef } from 'react';
 import { ImageUploaderProps } from '../../utils/interfaces/ImageUploaderProps';
 
 import './style.css';
@@ -36,4 +36,4 @@ const ImageUploader = ({ onImageUpload }: ImageUploaderProps) => {
     );
 };
 
-export default ImageUploader;
+export default memo(ImageUploader);

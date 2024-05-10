@@ -1,0 +1,11 @@
+.zoom-level-slider {
+    max-width: 290px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.zoom-level-slider input {
+    cursor: pointer;
+}

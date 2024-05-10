@@ -1,0 +1,29 @@
+.color-dropper-icon {
+    cursor: pointer;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    background: rgb(209, 209, 209);
+    border-radius: 25px;
+}
+
+.color-dropper-icon img {
+    object-fit: cover;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.color-dropper-icon:hover img {
+    filter: invert(24%) sepia(39%) saturate(4311%) hue-rotate(103deg) brightness(104%) contrast(107%);
+}
+
+.active-color-dropper-icon img {
+    filter: invert(24%) sepia(39%) saturate(4311%) hue-rotate(103deg) brightness(104%) contrast(107%);
+}
+
+.active-color-dropper-icon:hover img {
+    filter: none;
+}

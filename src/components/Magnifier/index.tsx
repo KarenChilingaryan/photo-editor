@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { MagnifierProps } from "../../utils/interfaces/MagnifierProps";
 
 const Magnifier = ({ magnifierRef, magnifierPosition, magnifierSize, cursorDotSize, cursorDotRef }: MagnifierProps) => (
@@ -35,4 +36,4 @@ const Magnifier = ({ magnifierRef, magnifierPosition, magnifierSize, cursorDotSi
     </>
 );
 
-export default Magnifier;
+export default memo(Magnifier);

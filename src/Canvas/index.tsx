@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, memo, useCallback, useState } from 'react';
 import { useCanvas } from '../hooks/useCanvas';
 import { useColorPicker } from '../hooks/useColorPicker';
 import { useMagnifier } from '../hooks/useMagnifier';
@@ -31,11 +31,10 @@ const ColorDropper = () => {
         pickColor(canvasRef.current!, event);
     };
 
-    const handleMouseMove = (event: MouseEvent<HTMLCanvasElement>) => {
-        if (isDropperActive) {
-            updateMagnifier(event, canvasRef, isDropperActive);
-        }
-    };
+    const handleMouseMove = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
+        updateMagnifier(event, canvasRef, isDropperActive);
+    }, [updateMagnifier, canvasRef, isDropperActive]);
+
 
     return (
         <div ref={mainRef} className='color-dropper'>
@@ -48,4 +47,4 @@ const ColorDropper = () => {
     );
 };
 
-export default ColorDropper;
+export default memo(ColorDropper);
